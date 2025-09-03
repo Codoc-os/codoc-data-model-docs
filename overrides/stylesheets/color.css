@@ -1,0 +1,47 @@
+:root {
+    --md-primary-fg-color:        #233C73;
+    --md-primary-fg-color--light: #1D3260;
+    --md-primary-fg-color--dark:  #111E39;
+    --md-accent-fg-color: #1D3260;
+}
+
+.md-typeset h1 {
+    font-size: 1.5em;
+    font-weight: 200;
+    margin: 0 0 1em;
+}
+
+.md-grid {
+  max-width: 100%;
+}
+
+.md-main__inner {
+    margin-top: 0;
+}
+
+.md-nav {
+    font-size: 16px;
+}
+
+@media (min-width: 1200px) {
+  .md-main__inner {
+    margin-top: 0;
+  }
+  .md-sidebar {
+    height: auto;
+  }
+  .md-sidebar--primary {
+    border-right: 1px solid var(--md-default-fg-color--lightest);
+  }
+  .md-nav {
+    font-size: 14px;
+  }
+  .md-nav .md-nav__title {
+    display: none;
+  }
+  .md-nav__icon {
+    width: 1.2rem;
+    height: 1.2rem;
+    margin-top: -.1rem;
+  }
+}

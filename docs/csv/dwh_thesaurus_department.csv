@@ -1,0 +1,13 @@
+Field,User Guide,ETL Conventions,Datatype,Required,Primary Key,Foreign Key,FK Table
+department_num,Unique identifier, ,bigint(64),Yes,Yes,No," "
+department_code,Code of the service, ,varchar(30),`Yes`,No,No," "
+department_str,Name of the service, ,varchar(400),`Yes`,No,No," "
+site_num,Site associated with the service., ,bigint(64),No,No,Yes,dwh_thesaurus_site
+instance_id,Instance associated with the service. , ,bigint(64),No,No,Yes,hospital_instance
+unit_count,Count of *dwh_thesaurus_unit* attached to this service, ,integer(32),No,No,No," "
+document_count,Count of *dwh_document* attached to this service, ,integer(32),No,No,No," "
+movement_count,Count of *dwh_patient_mvt* attached to this service, ,integer(32),No,No,No," "
+patient_count,Count of *dwh_patient* attached to this service, ,integer(32),No,No,No," "
+department_master,Use to show/hide this service., ,boolean,No,No,No," "
+update_date,Last modification of this record., ,timestamptz,No,No,No," "
+upload_id,ETL Pipeline identifier,Defined at the start of the pipeline as `datetime.now().strftime("%Y%m%d%H%M%S")`,bigint(64),No,No,No," "

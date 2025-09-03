@@ -1,0 +1,10 @@
+Field,User Guide,ETL Conventions,Datatype,Required,Primary Key,Foreign Key,FK Table
+ipphist_num,Unique identifier, ,bigint(64),Yes,Yes,No," "
+patient_num, , ,bigint(64),Yes,No,Yes,dwh_patient
+hospital_patient_id,Patient identifier in source data (IPP), ,varchar(100),`Yes`,No,No," "
+origin_patient_id,Use to separate real identifier from technical identifier (for instance pk in data source with no medical meaning) ,Set to *SIH* for real identifier,varchar(40),No,No,No," "
+master_patient_id,Indicate which identifier should be display to users. Each patient should have one and only one master identifier.,*true* if this identifier is the master,boolean,No,No,No," "
+instance_ipp_id,"Code of the healthcare center, see *hospital_instance* for more informations",Names accross all instance_id fields in other tables should match,varchar(40),No,No,No," "
+ipp_origin_code,Indicate source software for this record., ,varchar(300),No,No,No," "
+upload_id,ETL Pipeline identifier,Defined at the start of the pipeline as `datetime.now().strftime("%Y%m%d%H%M%S")`,bigint(64),No,No,No," "
+update_date,Last modification of this record., ,timestamptz,No,No,No," "

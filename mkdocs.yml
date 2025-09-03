@@ -1,0 +1,66 @@
+site_name: Data Model
+site_url: https://codoc-os.github.io/codoc-data-model-docs/
+repo_url: https://github.com/codoc-os/codoc-data-model-docs
+theme:
+  name: material
+  language: en
+  favicon: assets/favicon.png
+  logo: assets/logo.svg
+  features:
+#    - navigation.tabs
+#    - navigation.sections
+    - search.suggest
+    - content.code.copy
+    - toc.integrate
+#    - toc.follow
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      accent: blue
+      toggle:
+        icon: material/toggle-switch-off
+        name: Switch to system preference
+  custom_dir: overrides
+  font:
+    text: Roboto
+    code: Roboto Mono
+
+plugins:
+  - search
+  - table-reader
+
+extra_css:
+  - stylesheets/color.css
+
+markdown_extensions:
+  - admonition
+  - toc:
+      permalink: true
+      toc_depth: 1
+  - pymdownx.superfences
+  - pymdownx.tabbed
+
+nav:
+  - 'Overview': index.md
+  - 'clinical data':
+    - 'dwh_patient': tables/clinical_data/dwh_patient.md
+    - 'dwh_patient_ipphist': tables/clinical_data/dwh_patient_ipphist.md
+    - 'dwh_patient_stay': tables/clinical_data/dwh_patient_stay.md
+    - 'dwh_patient_mvt': tables/clinical_data/dwh_patient_mvt.md
+    - 'dwh_data': tables/clinical_data/dwh_data.md
+    - 'dwh_document': tables/clinical_data/dwh_document.md
+  - 'health system':
+    - 'hospital_instance': tables/health_system/hospital_instance.md
+    - 'dwh_thesaurus_site': tables/health_system/dwh_thesaurus_site.md
+    - 'dwh_thesaurus_department': tables/health_system/dwh_thesaurus_department.md
+    - 'dwh_thesaurus_unit': tables/health_system/dwh_thesaurus_unit.md
+  - 'vocabularies':
+    - 'dwh_thesaurus_data': tables/vocabularies/dwh_thesaurus_data.md

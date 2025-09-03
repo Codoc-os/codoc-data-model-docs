@@ -1,0 +1,15 @@
+Field,User Guide,ETL Conventions,Datatype,Required,Primary Key,Foreign Key,FK Table
+stay_num,Unique identifier, ,bigint(64),Yes,Yes,No," "
+encounter_num,Encounter number,*null* in CNIL compliant warehouse,varchar(300),Yes,No,No," "
+patient_num, , ,bigint(64),`Yes`,No,Yes,dwh_patient
+entry_date,Admission date, ,timestamptz,`Yes`,No,No," "
+out_date,Discharge date,*out_date* should be greater or equal than *entry_date*,timestamptz,No,No,No," "
+entry_mode,Indicates where a person was admitted from,"Values are not standardized yet.<br> Example values : *Transfert*, *Domicile*, *Mutation*",varchar(400),No,No,No," "
+out_mode,Indicates where a person was discharged to after a visit,"Values are not standardized yet.<br> Example values : *Transfert*, *Domicile*, *Mutation*, *Décès*",varchar(500),No,No,No," "
+type_dos,"Represents the kind of visit that took place (inpatient, outpatient, emergency, etc.)","*Consultation*, *HDJ*, *HAD*, *Urgence*, *Hospitalisation*, *Ambulatoire*",varchar(10),No,No,No," "
+instance_stay_id,"Code of the healthcare center, see *hospital_instance* for more informations", ,varchar(40),No,No,No," "
+stay_origin_code,Indicate source software for this stay, ,varchar(300),No,No,No," "
+stay_pid,Pseudo identifier of the stay. Use in correspondence table to retrieve patient identity when needed., ,varchar(300),No,No,No," "
+stay_salt,Salt for hash algorithm, ,varchar(300),No,No,No," "
+upload_id,ETL Pipeline identifier,Defined at the start of the pipeline as `datetime.now().strftime("%Y%m%d%H%M%S")`,bigint(64),No,No,No," "
+update_date,Last modification of this record., ,timestamptz,No,No,No," "

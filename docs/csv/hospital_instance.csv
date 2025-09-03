@@ -1,0 +1,6 @@
+Field,User Guide,ETL Conventions,Datatype,Required,Primary Key,Foreign Key,FK Table
+id,Unique identifier, ,bigint(64),Yes,Yes,No," "
+code,Code of the instance,Should match instance_xxx_id in clinical tables.,varchar(30),Yes,No,No," "
+name,Name of the instance, ,varchar(400),Yes,No,No," "
+upload_id,ETL Pipeline identifier,Defined at the start of the pipeline as `datetime.now().strftime("%Y%m%d%H%M%S")`,bigint(64),No,No,No," "
+update_date,Last modification of this record., ,timestamptz,Yes,No,No," "

@@ -1,0 +1,34 @@
+Field,User Guide,ETL Conventions,Datatype,Required,Primary Key,Foreign Key,FK Table
+data_num,Unique identifier, ,bigint(64),Yes,Yes,No," "
+patient_num, , ,bigint(64),`Yes`,No,Yes,dwh_patient
+thesaurus_data_num,"The concept identifier associated with the data record (e.g., diagnosis, procedure, lab test).", ,bigint(64),`Yes`,No,Yes,dwh_thesaurus_data
+thesaurus_code,"The source vocabulary code corresponding to the associated concept (e.g., ICD-10, LOINC, ATC).", ,varchar(40),`Yes`,No,No," "
+
+document_date,The date the data was recorded in the source system., ,timestamptz,`Yes`,No,No," "
+start_date,"The start date of the clinical event, observation or drugs.", ,timestamptz,`Yes`,No,No," "
+end_date,"The end date of the clinical event, observation or drugs, if applicable.", ,timestamptz,No,No,No," "
+age_patient,The age of the patient at the time of the data record., ,double(53),No,No,No," "
+
+
+val_numeric,"A numeric value associated with the data record (e.g., lab result, measurement).", ,double(53),No,No,No," "
+operator,"The operator applied to the value (e.g. *<*, *>*, *=*).", ,varchar(5),No,No,No," "
+
+val_text,A textual or categorical value associated with the data record., ,varchar(10000),No,No,No," "
+
+lower_bound,"The lower boundary of a value range, if applicable.", ,double(53),No,No,No," "
+upper_bound,"The upper boundary of a value range, if applicable.", ,double(53),No,No,No," "
+
+
+instance_data_id,"Code of the healthcare center, see *hospital_instance* for more informations.", ,varchar(40),No,No,No," "
+document_origin_code,Indicate source software for this record., ,varchar(60),No,No,No," "
+id_data_source,Unique identifier in source software., ,varchar(300),No,No,No," "
+
+stay_num,The visit during which the data record was generated., ,bigint(64),No,No,Yes,dwh_patient_stay
+department_num,The service associated with the data record., ,bigint(64),No,No,Yes,dwh_thesaurus_department
+document_num,The identifier of the document grouping multiple related data records (e.g. all results from a lab report)., ,bigint(64),No,No,Yes,dwh_document
+
+data_pid,"Optional pseudo-identifier for a data. Mainly included for structural consistency; not required for standard analytical use.",Generated as a hash of *id_data_source* combined with *data_salt*.,varchar(300),No,No,No," "
+data_salt,Optional random salt used in the hash algorithm to generate *data_pid*., ,varchar(300),No,No,No," "
+
+upload_id,ETL Pipeline identifier,Defined at the start of the pipeline as `datetime.now().strftime("%Y%m%d%H%M%S")`,bigint(64),No,No,No," "
+updated_date,Last modification of this record., ,date,Yes,No,No," "
