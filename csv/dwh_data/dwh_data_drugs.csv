@@ -1,0 +1,10 @@
+Field,User Guide,ETL Conventions,Datatype,Required,Primary Key,Foreign Key,FK Table
+frequency,"Frequency of drug administration (e.g. once daily, twice daily)", ,integer(32),No,No,No," "
+period,The duration of the prescription or administration period., ,integer(32),No,No,No," "
+period_unit,"The unit of time for the period (e.g. days, weeks, months).", ,varchar(25),No,No,No," "
+route,"The route of drug administration (e.g. oral, intravenous).", ,varchar(50),No,No,No," "
+data_status,"The status of the prescription or data record (e.g. prescribed, administered, cancelled)", ,varchar(20),No,No,No," "
+data_unit,"The unit of measure for the drug dose (e.g. mg, mL).", ,varchar(25),No,No,No," "
+daily_details,"Additional structured details about daily drug administration (e.g. morning/evening, meal-related intake).", ,varchar(400),No,No,No," "
+drug_condition,"Indicates whether the prescription is conditional.", ,boolean,No,No,No," "
+drug_condition_reason,"The clinical reason or trigger for a conditional prescription (e.g., *if needed*, *if severe pain*)"., ,varchar(4000),No,No,No," "

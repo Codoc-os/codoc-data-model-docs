@@ -1,0 +1,4 @@
+Field,User Guide,ETL Conventions,Datatype,Required,Primary Key,Foreign Key,FK Table
+activity_form,The form of activity related to the PMSI coding.,"*30* : CMP <br> *31* : Outpatient care provided by other facilities than CMP or CATTP <br> *32* : CATTP",varchar(4),No,No,No," "
+intersectoriel_number,Identifier for inter-sectorial linkage of PMSI episodes., ,varchar(6),No,No,No," "
+residency_zip_code,Patient's residency postal code as recorded in PMSI., ,integer(32),No,No,No," "

@@ -1,0 +1,7 @@
+Field,User Guide,ETL Conventions,Datatype,Required,Primary Key,Foreign Key,FK Table
+site_num,Unique identifier, ,bigint(64),Yes,Yes,No," "
+site_code,Code of the site, ,varchar(30),Yes,No,No," "
+site_str,Name of the site, ,varchar(400),Yes,No,No," "
+instance_id,Instance associated with the site., ,bigint(64),No,No,Yes,hospital_instance
+upload_id,"Identifier of the pipeline integration run, used to differentiate each batch of integrated data.",Defined at the start of the pipeline as `datetime.now().strftime("%Y%m%d%H%M%S")`. <br> For example a batch integrated on 15/09/2025 at 00:00:00 has `upload_id = 20250915000000`.,bigint(64),No,No,No," "
+update_date,Date and time of the record’s last update., ,timestamptz,No,No,No," "

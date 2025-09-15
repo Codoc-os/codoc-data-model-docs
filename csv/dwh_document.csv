@@ -1,0 +1,22 @@
+Field,User Guide,ETL Conventions,Datatype,Required,Primary Key,Foreign Key,FK Table
+document_num,Unique identifier, ,bigint(64),Yes,Yes,No," "
+patient_num, , ,bigint(64),Yes,No,Yes,dwh_patient
+title, The title of the document. , ,varchar(400),No,No,No," "
+document_date,The date the document was recorded., ,timestamptz,Yes,No,No," "
+document_type,"The type of the document (e.g. CR, observation, formulaire, ...)", ,varchar(100),No,No,No," "
+author,The person who created or authored the document, ,varchar(200),No,No,No," "
+displayed_text,The content of the document.,Convert to html,text,Yes,No,No," "
+
+stay_num,The visit during which the document was created., ,bigint(64),No,No,Yes,dwh_patient_stay
+department_num,The service associated with the document. , ,bigint(64),No,No,Yes,dwh_thesaurus_department
+unit_num,The care unit associated with the document., ,bigint(64),No,No,Yes,dwh_thesaurus_unit
+
+instance_document_id,"Code of the healthcare center, see *hospital_instance* for more informations", ,varchar(40),No,No,No," "
+document_origin_code,Indicate source software for this document, ,varchar(60),No,No,No," "
+id_doc_source,Unique identifier in source software, ,varchar(300),No,No,No," "
+
+document_pid,"Optional pseudo-identifier for a document. Mainly included for structural consistency; not required for standard analytical use.",Generated as a hash of *id_doc_source* combined with *document_salt*.,varchar(300),No,No,No," "
+document_salt,Optional random salt used in the hash algorithm to generate *document_pid*., ,varchar(300),No,No,No," "
+
+upload_id,"Identifier of the pipeline integration run, used to differentiate each batch of integrated data.",Defined at the start of the pipeline as `datetime.now().strftime("%Y%m%d%H%M%S")`. <br> For example a batch integrated on 15/09/2025 at 00:00:00 has `upload_id = 20250915000000`.,bigint(64),No,No,No," "
+update_date,Date and time of the record’s last update., ,timestamptz,No,No,No," "
