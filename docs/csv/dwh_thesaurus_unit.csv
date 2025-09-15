@@ -1,12 +1,12 @@
 Field,User Guide,ETL Conventions,Datatype,Required,Primary Key,Foreign Key,FK Table
 unit_num,Unique identifier, ,bigint(64),Yes,Yes,No," "
-unit_code,Code of the unit, ,varchar(50),`Yes`,No,No," "
-unit_str,Name of the unit, ,varchar(400),`Yes`,No,No," "
-department_num,Service associated with the unit., ,bigint(64),`Yes`,No,Yes,dwh_thesaurus_department
+unit_code,Code of the unit, ,varchar(50),Yes,No,No," "
+unit_str,Name of the unit, ,varchar(400),Yes,No,No," "
+department_num,Service associated with the unit., ,bigint(64),Yes,No,Yes,dwh_thesaurus_department
 unit_start_date,Date when the unit became active in the facility., ,date,No,No,No," "
 unit_end_date,Date when the unit ceased operation in the facility.,*null* if the unit is still active,date,No,No,No," "
 document_count,Count of *dwh_document* attached to this unit, ,integer(32),No,No,No," "
 movement_count,Count of *dwh_patient_mvt* attached to this unit, ,integer(32),No,No,No," "
 patient_count,Count of *dwh_patient* attached to this unit, ,integer(32),No,No,No," "
-update_date,Last modification of this record., ,timestamptz,No,No,No," "
-upload_id,ETL Pipeline identifier,Defined at the start of the pipeline as `datetime.now().strftime("%Y%m%d%H%M%S")`,bigint(64),No,No,No," "
+update_date,Date and time of the record’s last update., ,timestamptz,No,No,No," "
+upload_id,"Identifier of the pipeline integration run, used to differentiate each batch of integrated data.",Defined at the start of the pipeline as `datetime.now().strftime("%Y%m%d%H%M%S")`. <br> For example a batch integrated on 15/09/2025 at 00:00:00 has `upload_id = 20250915000000`.,bigint(64),No,No,No," "

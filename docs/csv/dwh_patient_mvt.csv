@@ -1,16 +1,16 @@
 Field,User Guide,ETL Conventions,Datatype,Required,Primary Key,Foreign Key,FK Table
 mvt_num,Unique identifier, ,bigint(64),Yes,Yes,No," "
-patient_num, , ,bigint(64),`Yes`,No,Yes,dwh_patient
-stay_num,Use this field to link the movement record to its visit., ,bigint(64),`Yes`,No,Yes,dwh_patient_stay
+patient_num, , ,bigint(64),Yes,No,Yes,dwh_patient
+stay_num,Use this field to link the movement record to its visit., ,bigint(64),Yes,No,Yes,dwh_patient_stay
 
-entry_date,Admission date, ,timestamptz,`Yes`,No,No," "
+entry_date,Admission date, ,timestamptz,Yes,No,No," "
 out_date,Discharge date, ,timestamptz,No,No,No," "
 
-mvt_entry_mode,Indicates where a person was admitted from,"Values are not standardized yet. <br> Example values : *Transfert*, *Domicile*, *Mutation*",varchar(255),No,No,No," "
-mvt_exit_mode,Indicates where a person was discharged to,"Values are not standardized yet. <br> Example values : *Transfert*, *Domicile*, *Mutation*, *Décès*",varchar(300),No,No,No," "
+mvt_entry_mode,Indicates where a person was admitted from,"Values are not standardized yet. <br> Example values : *Transfert*, *Domicile*, *Mutation*",varchar(500),No,No,No," "
+mvt_exit_mode,Indicates where a person was discharged to,"Values are not standardized yet. <br> Example values : *Transfert*, *Domicile*, *Mutation*, *Décès*",varchar(500),No,No,No," "
 
-type_mvt,"Represents the kind of visit that took place (inpatient, outpatient, emergency, etc.)","**TODO** <br> *C* : Consultation<br> *J* : HDJ<br> *U* : Urgence<br> *H* : Hospitalisation<br> *A* : Ambulatoire<br> *S* : Séance<br> *AM* : Ambulatoire MCO<br> *AP* : Ambulatoire PSY",varchar(30),No,No,No," "
-mvt_order,Indicates the sequential order of patient movements within a visit.,"This derived field assigns a numeric ranking to each movement event, allowing reconstruction of the temporal flow of movements during a single visit (e.g., for visualization or analysis).",integer(32),No,No,No," "
+type_mvt,"Represents the kind of visit that took place (inpatient, outpatient, emergency, etc.)","*C* : Consultation<br> *J* : HDJ<br> *U* : Urgence<br> *H* : Hospitalisation<br> *A* : Ambulatoire<br> *S* : Séance<br> *AM* : Ambulatoire MCO<br> *AP* : Ambulatoire PSY<br> *E* : Externes",varchar(30),No,No,No," "
+mvt_order,Indicates the sequential order of patient movements within a visit.,"This derived field assigns a numeric ranking to each movement event based on ascending `mvt_entry_date`, allowing reconstruction of the temporal flow of movements during a single visit (e.g., for visualization or analysis).",integer(32),No,No,No," "
 
 department_num,Service of admission, ,bigint(64),No,No,Yes,dwh_thesaurus_department
 unit_num,Unit of admission, ,bigint(64),No,No,Yes,dwh_thesaurus_unit
@@ -22,5 +22,5 @@ id_mvt_source,Unique identifier in source software, ,varchar(300),No,No,No," "
 mvt_pid,"Optional pseudo-identifier for a movement. Mainly included for structural consistency; not required for standard analytical use.",Generated as a hash of *id_mvt_source* combined with *mvt_salt*.,varchar(300),No,No,No," "
 mvt_salt,Optional random salt used in the hash algorithm to generate *mvt_pid*., ,varchar(300),No,No,No," "
 
-upload_id,ETL Pipeline identifier,Defined at the start of the pipeline as `datetime.now().strftime("%Y%m%d%H%M%S")`,bigint(64),No,No,No," "
-update_date,Last modification of this record., ,timestamptz,No,No,No," "
+upload_id,"Identifier of the pipeline integration run, used to differentiate each batch of integrated data.",Defined at the start of the pipeline as `datetime.now().strftime("%Y%m%d%H%M%S")`. <br> For example a batch integrated on 15/09/2025 at 00:00:00 has `upload_id = 20250915000000`.,bigint(64),No,No,No," "
+update_date,Date and time of the record’s last update., ,timestamptz,No,No,No," "
